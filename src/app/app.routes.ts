@@ -13,8 +13,23 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./shared/components/sidenav/sidenav.component').then(
-        (c) => c.SidenavComponent),
-        canActivate:[authGuard]
-  },
+        (c) => c.SidenavComponent
+      ),
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full',
+      },
 
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./components/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
+  },
 ];
