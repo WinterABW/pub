@@ -60,9 +60,7 @@ export class AuthService {
 
   get permissions() {
     const credentials = this._credentials.credentials;
-    let groups;
-    if (credentials && credentials.user.groups)
-      groups = credentials.user.groups;
+    let groups = credentials?.user.groups;
     if (groups) {
       return groups
         .filter((group) => group.name !== 'Usuario común')
@@ -71,9 +69,8 @@ export class AuthService {
             accumulator.concat(currentValue.permissions),
           []
         );
-    } else {
-      return [];
     }
+    return null;
   }
 
   setUserData(user) {

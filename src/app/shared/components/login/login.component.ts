@@ -21,13 +21,12 @@ import { catchError, throwError } from 'rxjs';
   styleUrls: ['./login.component.scss'],
   imports: [MaterialModule, ReactiveFormsModule],
   standalone: true,
-  providers: [HttpClientModule],
 })
 export class LoginComponent implements OnInit {
   loginForm: UntypedFormGroup;
-  fb = inject(UntypedFormBuilder);
   user: UserModel;
-
+  
+  fb = inject(UntypedFormBuilder);
   private _authService = inject(AuthService);
   private _credential = inject(CredentialsService);
 
@@ -43,8 +42,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this._authService.login(this.loginForm.value).subscribe((response) => {
         const { access_token, refresh_token } = response;
-        const credentials: Credentials = { access_token, refresh_token };
-        this._credential.setCredentials(credentials);
+        this._credential.setCredentials({ access_token, refresh_token });
         this._authService
           .getUserData()
           .pipe(
