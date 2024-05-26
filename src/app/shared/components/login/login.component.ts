@@ -14,6 +14,7 @@ import {
 } from '../../../services/credentials.service';
 import { UserModel } from '../../../models/user';
 import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   fb = inject(UntypedFormBuilder);
   private _authService = inject(AuthService);
   private _credential = inject(CredentialsService);
+  private router=inject(Router)
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -65,10 +67,10 @@ export class LoginComponent implements OnInit {
             this._credential.setCredentials(credentialsUser);
             if (this._authService.canLogin()) {
               this._authService.setUserData(this.user);
-              alert('ok');
+              this.router.navigate([''])
             } else {
               this._authService.logout();
-              alert('no');
+              this.router.navigate(['/login'])
             }
           });
       });

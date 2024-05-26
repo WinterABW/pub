@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { MaterialModule } from '../../material-module';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [],
+  imports: [MaterialModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })

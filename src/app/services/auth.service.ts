@@ -84,7 +84,7 @@ export class AuthService {
   }
 
   logout() {
-    this._credentials.setCredentials();
+    localStorage.removeItem('credentials');
   }
 
   getUserData() {

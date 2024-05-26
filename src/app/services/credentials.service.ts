@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 
-const credentialsKey = 'credentials';
-
 export interface Credentials {
   user?: any;
   access_token: string;
@@ -38,9 +36,9 @@ export class CredentialsService {
   setCredentials(credentials?: Credentials) {
     this._credentials = credentials || null;
     if (credentials) {
-      localStorage.setItem(credentialsKey, JSON.stringify(credentials));
+      localStorage.setItem('credentials', JSON.stringify(credentials));
     } else {
-      localStorage.removeItem(credentialsKey);
+      localStorage.removeItem('credentials');
     }
   }
 
