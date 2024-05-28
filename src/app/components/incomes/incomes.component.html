@@ -1,6 +1,6 @@
 <form [formGroup]="paymentFilters">
-  <section class="flex flex-col sm:flex-row justify-between items-center gap-5">
-    <mat-form-field>
+  <section class="flex flex-col sm:flex-row justify-between items-center gap-5 shadow-lg px-4">
+    <mat-form-field appearence="fill">
       <mat-label>Publicaciones</mat-label>
       <mat-select [formControl]="pubControl" (selectionChange)="selectPublication($event.value)">
         @for(publicacion of publicationList; track $index ){
@@ -17,15 +17,6 @@
       </mat-date-range-input>
       <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-
-    <mat-form-field floatLabel="always">
-      <mat-label>Estado</mat-label>
-      <mat-select formControlName="state">
-        <mat-option [value]="''">Todos</mat-option>
-        <mat-option [value]="'PENDING'">Pendientes</mat-option>
-        <mat-option [value]="'SUCCESS'">Completados</mat-option>
-      </mat-select>
     </mat-form-field>
 
     <button mat-raised-button class="page-btn" mat-button><mat-icon
@@ -77,20 +68,6 @@
         }
         }
       </td>
-    </ng-container>
-
-    <ng-container matColumnDef="seller">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
-        Vendedor
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.seller.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="state">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
-        Estado
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.state| titlecase}} </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">

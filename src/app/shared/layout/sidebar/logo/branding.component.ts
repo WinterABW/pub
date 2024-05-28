@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <a href="/">
         <img
           src="assets/img/logo.svg"
-          class="align-middle m-2"
+          class="w-3/4 h-3/4"
           alt="logo"
         />
       </a>

@@ -28,9 +28,7 @@ export interface Payment {
   amount: string;
   date: Date;
   type: 'tr' | 'ez';
-  seller: any;
-  state: 'SUCCESS' | 'FAILED' | 'PENDING';
-  publicacion: any;
+  publicacion: string;
 }
 @Component({
   selector: 'app-incomes',
@@ -54,8 +52,6 @@ export class IncomesComponent implements OnInit, AfterViewInit {
     'date',
     'publicacion',
     'type',
-    'seller',
-    'state',
     'amount',
   ];
   dataSource = new MatTableDataSource<Payment>();
@@ -70,8 +66,8 @@ export class IncomesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    /* this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator; */
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   private loadPayments() {
