@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path:'',
     loadComponent:()=>import('./shared/layout/full/full.component').then(c=>c.FullComponent),
-    canActivate:[authGuard],
+    /* canActivate:[authGuard], */
     children:[
       /* {
         path: '',

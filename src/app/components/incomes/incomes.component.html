@@ -1,6 +1,50 @@
+<form [formGroup]="paymentFilters">
+  <section class="flex flex-col sm:flex-row justify-between items-center gap-5">
+    <mat-form-field>
+      <mat-label>Publicaciones</mat-label>
+      <mat-select [formControl]="pubControl" (selectionChange)="selectPublication($event.value)">
+        @for(publicacion of publicationList; track $index ){
+        <mat-option [value]="publicacion">{{publicacion.nombre}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input formControlName="date__gte" matStartDate placeholder="Inicio">
+        <input formControlName="date__lt" matEndDate placeholder="Fin">
+      </mat-date-range-input>
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="state">
+        <mat-option [value]="''">Todos</mat-option>
+        <mat-option [value]="'PENDING'">Pendientes</mat-option>
+        <mat-option [value]="'SUCCESS'">Completados</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button class="page-btn" mat-button><mat-icon
+        class="mr-1">file_download_outline</mat-icon>Exportar
+    </button>
+  </section>
+
+  <mat-button-toggle-group aria-label="Font Style" class="col-span-3 place-self-center my-2" formControlName="type">
+    <mat-button-toggle value="all">Todos</mat-button-toggle>
+    <mat-button-toggle value="payment">Pago</mat-button-toggle>
+    <mat-button-toggle value="donation">Premiación</mat-button-toggle>
+    <mat-button-toggle value="reproduccion">Reproducción</mat-button-toggle>
+    <mat-button-toggle value="descarga">Descarga</mat-button-toggle>
+  </mat-button-toggle-group>
+</form>
+
+
 <section>
-  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
-    class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
@@ -59,6 +103,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  <mat-paginator (page)="paginate($event)" [length]="total" [pageSizeOptions]="[5,10, 20,50]" showFirstLastButtons>
   </mat-paginator>
 </section>

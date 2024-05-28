@@ -6,6 +6,8 @@ import {HttpParams} from '@angular/common/http';
 })
 export class UtilesService {
 
+  constructor() {
+  }
 
   getQueryParams = (params) => {
     let queryParameters = new HttpParams();
@@ -17,7 +19,7 @@ export class UtilesService {
       }
       return queryParameters;
     }
-    return null
+    return queryParameters
   };
   getBody = (params) => {
     const body = new FormData();
