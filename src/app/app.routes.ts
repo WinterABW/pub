@@ -5,24 +5,37 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./shared/components/login/login.component').then(
+      import('./shared/components/common/login/login.component').then(
         (c) => c.LoginComponent
       ),
   },
   {
+    path:'',
+    loadComponent:()=>import('./shared/layout/full/full.component').then(c=>c.FullComponent),
+    canActivate:[authGuard],
+    /* children:[
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full',
+      },{
+        path:'dashboard',loadComponent:()=>import('./shared/layout/')
+      } 
+    ]*/
+  }
+ /*  {
     path: '',
     loadComponent: () =>
-      import('./shared/components/sidenav/sidenav.component').then(
+      import('./shared/components/common/sidenav/sidenav.component').then(
         (c) => c.SidenavComponent
       ),
     canActivate: [authGuard],
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/sales',
         pathMatch: 'full',
       },
-
       {
         path: 'dashboard',
         loadChildren: () =>
@@ -30,6 +43,14 @@ export const routes: Routes = [
             (m) => m.DashboardModule
           ),
       },
+      {
+        path: 'sales',
+        loadChildren: () =>
+          import('./components/sales/sales.module').then((m) => m.SalesModule),
+      },
+      {
+        path: 'incomes',loadChildren: () =>import('./components/incomes/incomes.module').then((m) => m.Incomes),
+      },
     ],
-  },
+  }, */
 ];
