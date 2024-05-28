@@ -13,15 +13,18 @@ export const routes: Routes = [
     path:'',
     loadComponent:()=>import('./shared/layout/full/full.component').then(c=>c.FullComponent),
     canActivate:[authGuard],
-    /* children:[
-      {
+    children:[
+      /* {
         path: '',
         redirectTo: '/dashboard',
         pathMatch: 'full',
       },{
         path:'dashboard',loadComponent:()=>import('./shared/layout/')
-      } 
-    ]*/
+      } , */
+      {
+        path: 'incomes',loadComponent: () =>import('./components/incomes/incomes.component').then((c) => c.IncomesComponent),
+      },
+    ]
   }
  /*  {
     path: '',

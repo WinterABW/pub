@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../material-module';
 import { AppNavItemComponent } from './nav-item/nav-item.component';
-import { BrandingComponent } from './branding.component';
+import { BrandingComponent } from './logo/branding.component';
 import { navItems } from './sidebar-data';
 
 @Component({

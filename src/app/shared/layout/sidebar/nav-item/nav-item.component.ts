@@ -2,7 +2,7 @@ import { Component, inject, Input, OnChanges, OnInit } from '@angular/core';
 import { NavItem } from './nav-item';
 import { Router } from '@angular/router';
 import { MaterialModule } from '../../../material-module';
-import { NavService } from '../../services/nav.service';
+import { NavService } from './nav.service';
 import { CommonModule } from '@angular/common';
 import { TablerIconsModule } from 'angular-tabler-icons';
 

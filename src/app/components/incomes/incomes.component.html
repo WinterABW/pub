@@ -1,72 +1,64 @@
-<form>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Publicación">
-  </mat-form-field>
+<section>
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8">
 
-  <mat-form-field>
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate placeholder="Inicio">
-      <input matEndDate placeholder="Fin">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-  </mat-form-field>
-  
-</form>
-
-<div class="flex flex-col justify-between items-center mb-6">
-  <table [dataSource]="payments" mat-table style="background-color: #111827">
     <ng-container matColumnDef="date">
-      <th *matHeaderCellDef mat-header-cell>Fecha</th>
-      <td *matCellDef="let element" mat-cell>{{ element.date | date: 'd/M/yy, h:mm a' }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+        Fecha
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date: 'd/M/yy, h:mm a'}}</td>
     </ng-container>
 
     <ng-container matColumnDef="publicacion">
-      <th *matHeaderCellDef mat-header-cell>Publicación</th>
-      <td *matCellDef="let element" mat-cell>{{ element.items_data[0].item.description }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="amount">
-      <th *matHeaderCellDef mat-header-cell>Monto</th>
-      <td *matCellDef="let element" mat-cell>{{ element.amount }} {{ element.currency }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="state">
-      <th *matHeaderCellDef mat-header-cell>Estado</th>
-      <td *matCellDef="let element" mat-cell>{{ element.state | titlecase }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="seller">
-      <th *matHeaderCellDef mat-header-cell>Vendedor</th>
-      <td *matCellDef="let element" mat-cell>{{ element.seller.name }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+        Publicación
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.items_data[0].item.description}} </td>
     </ng-container>
 
     <ng-container matColumnDef="type">
-      <th *matHeaderCellDef mat-header-cell>Tipo</th>
-      <td *matCellDef="let element" mat-cell>
-        @switch (element.type) {
-        @case ('donation') {
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+        Tipo
+      </th>
+      <td mat-cell *matCellDef="let element">
+        @switch(element.type){
+        @case('donation'){
         <span>Premiación</span>
         }
-        @case ('payment') {
+        @case('payment'){
         <span>Pago</span>
         }
-        @default {
+        @default{
         <span>-</span>
         }
         }
       </td>
     </ng-container>
-    <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
-    <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
-    <tr class="mat-row w-full text-center block" *matNoDataRow>
-      <td class="mat-cell w-full h-full flex items-center justify-center" colspan="7">
-        {{ payments ? 'Lo sentimos, no hay registros que coincidan con los filtros de búsqueda.' : 'Cargando
-        datos...' }}
-      </td>
-    </tr>
-  </table>
 
-  <mat-paginator [length]="total" [pageSizeOptions]="[10, 20]" showFirstLastButtons>
+    <ng-container matColumnDef="seller">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+        Vendedor
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.seller.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+        Estado
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.state| titlecase}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+        Monto
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} {{ element.currency }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
   </mat-paginator>
-</div>
+</section>
