@@ -37,7 +37,9 @@ export interface Payment {
   templateUrl: './incomes.component.html',
   styleUrl: './incomes.component.scss',
 })
+
 export class IncomesComponent implements OnInit, AfterViewInit {
+
   publicationList: any;
   total: number;
   private selectedPublication: Publicacion | null = null;

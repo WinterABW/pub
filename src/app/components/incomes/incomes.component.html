@@ -57,15 +57,15 @@
       </th>
       <td mat-cell *matCellDef="let element">
         @switch(element.type){
-        @case('donation'){
-        <span>Premiación</span>
-        }
-        @case('payment'){
-        <span>Pago</span>
-        }
-        @default{
-        <span>-</span>
-        }
+          @case('donation'){
+          <span>Premiación</span>
+          }
+          @case('payment'){
+          <span>Pago</span>
+          }
+          @default{
+          <span>-</span>
+          }
         }
       </td>
     </ng-container>
