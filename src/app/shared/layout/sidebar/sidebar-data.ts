@@ -48,7 +48,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Comentarios',
     iconName: 'user-plus',
-    route: '/comentarios',
+    route: '/comments',
   },
   {
     navCap: 'Extra',
