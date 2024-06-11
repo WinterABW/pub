@@ -17,7 +17,7 @@ export const routes: Routes = [
       import('./shared/layout/full/full.component').then(
         (c) => c.FullComponent
       ),
-    /* canActivate:[authGuard], */
+    canActivate:[authGuard],
     children: [
       {
         path: '',
@@ -36,9 +36,7 @@ export const routes: Routes = [
       {
         path: 'comments',
         loadComponent: () =>
-          import('./components/comment/comments/comment.component').then(
-            (c) => c.CommentComponent
-          ),
+          import('./components/comment/comments/comment.component').then(c=>c.CommentComponent)
       },
       {
         path: 'live',

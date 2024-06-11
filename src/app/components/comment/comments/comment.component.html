@@ -2,67 +2,7 @@
     <mat-tab-group mat-stretch-tabs="false">
         <mat-tab label="Comentarios">
             <mat-card-content>
-                <div class="flex flex-wrap -m-2">
-                    <div class="w-full sm:w-1/2 lg:w-1/3 p-2 flex">
-                        @for(comment of comments;track $index){
-                        <div class="card-container flex flex-col w-full p-4 divide-y rounded-lg shadow-lg">
-                            <header class="flex justify-between p-2">
-                                <div class="flex space-x-4">
-                                    <img [src]="comment.usuario.avatar ? comment.usuario.avatar+'_60x60' : 'assets/img/user-placeholder.png'"
-                                        alt="" class="object-cover w-12 h-12 rounded-full">
-                                    <div>
-                                        <h4 class="font-bold">{{comment.usuario.username}}</h4>
-                                        <span class="text-muted">{{ formatRelativeDate(comment.fecha) }}</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-2">
-
-                                    @if (!comment.eliminado) {
-                                    <mat-icon class="text-green-500" style="font-size: 25px;">check_circle</mat-icon>
-                                    }@else {
-
-                                    <mat-icon class="text-danger" style="font-size: 25px;"
-                                        matTooltip="Eliminado">cancel</mat-icon>
-                                    }
-
-                                </div>
-                            </header>
-                            <hr>
-                            <div class="flex justify-between flex-1">
-                                <div class="flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="hover:underline hover:text-blue-700">
-                                            <a (click)="$event.stopImmediatePropagation();"
-                                                [href]="'https://www.picta.cu/medias/' + comment.publicacion.slug_url"
-                                                target="_blank">
-                                                {{comment.publicacion.nombre}}
-                                            </a>
-                                        </h3>
-                                        <p class="text-muted">{{comment.texto}}</p>
-                                    </div>
-                                    <!-- @if (havePermision) {
-                                        <button  mat-raised-button color="primary" class="mt-2 w-5"
-                                        matTooltip="Click para responder este comentario">
-                                        Responder
-                                    </button>
-                                    } -->
-                                    
-                                </div>
-                                <div class="flex flex-col justify-between items-center">
-                                    <mat-checkbox id="checkbox-{{comment.id}}" color="primary"
-                                        [checked]="comment.publicado" (change)="togglePublicado(comment.id, $event)"
-                                        [disabled]="disableToggle">
-                                    </mat-checkbox>
-                                    <button (click)="$event.stopImmediatePropagation(); eliminarComentario(comment)"
-                                        color="warn" mat-icon-button matTooltip="Eliminar comentario">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        }
-                    </div>
-                </div>
+                hi
             </mat-card-content>
         </mat-tab>
     </mat-tab-group>
