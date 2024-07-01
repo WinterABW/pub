@@ -20,10 +20,10 @@ export class CommentComponent implements OnInit {
   comments: any[] = [];
   commentForm: UntypedFormGroup;
   answerDialogRef: MatDialogRef<any>;
-  private dialog = inject(MatDialog);
   loading: boolean;
   filters: UntypedFormGroup;
   total: any;
+  private dialog = inject(MatDialog);
   comentarioService = inject(CommentService);
   private snackBar=inject(HotToastService)
   params = {
