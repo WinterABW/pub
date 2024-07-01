@@ -21,7 +21,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/incomes',
+        redirectTo: '/comments',
         pathMatch: 'full',
       } /*{
         path:'dashboard',loadComponent:()=>import('./shared/layout/')

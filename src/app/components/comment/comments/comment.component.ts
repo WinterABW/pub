@@ -21,7 +21,7 @@ export class CommentComponent implements OnInit {
   commentForm: UntypedFormGroup;
   answerDialogRef: MatDialogRef<any>;
   loading: boolean;
-  filters: UntypedFormGroup;
+  filters: UntypedFormGroup=null;
   total: any;
   private dialog = inject(MatDialog);
   comentarioService = inject(CommentService);
@@ -33,17 +33,20 @@ export class CommentComponent implements OnInit {
   disableToggle = false;
 
   ngOnInit(): void {
+    console.log('CommentComponent');
+    
     this.load();
   }
 
   load() {
     this.loading = true;
-    const filters = this.filters.value;
-    if (filters.eliminado === 'all') delete filters.eliminado;
-
+    /*     const filters = this.filters.value;
+if (filters.eliminado === 'all') delete filters.eliminado;
+ */
     this.comentarioService
       .get_comentarios({
-        params: { ...this.params, ...filters },
+        /* params: { ...this.params, ...filters }, */
+        params: {  },
         mapResponseFn: (response) => {
           this.total = response.count;
           return response.results;
@@ -51,10 +54,11 @@ export class CommentComponent implements OnInit {
       })
       .pipe(finalize(() => (this.loading = false)))
       .subscribe((data: any) => {
-        this.comments = data;
+        this.comments = data.results;
         console.log(this.comments);
       });
   }
+
   togglePublicado(id: any, event: any) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
