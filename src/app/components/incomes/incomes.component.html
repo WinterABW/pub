@@ -3,6 +3,7 @@
     <mat-form-field appearence="fill">
       <mat-label>Publicaciones</mat-label>
       <mat-select [formControl]="pubControl" (selectionChange)="selectPublication($event.value)">
+        <mat-option [value]="">Todo</mat-option>
         @for(publicacion of publicationList; track $index ){
         <mat-option [value]="publicacion">{{publicacion.nombre}}</mat-option>
         }
