@@ -17,6 +17,7 @@ export class CommentService {
     let queryParams;
     if (params) {
       queryParams = this.utils.getQueryParams(params);
+      console.log(queryParams);
     }
     return this.httpClient.get(`${URLv2}`, {
       params: queryParams,
